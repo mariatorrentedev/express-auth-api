@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import { PORT, NODE_ENV } from "./config";
+import userRoutes from "./routes/user";
+import authRoutes from "./routes/auth";
 
 // The minimal output for production, Standard Apache for dev.
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
@@ -15,9 +17,8 @@ app.use(morgan(morganOption));
 app.use(helmet());
 
 // Routes
-app.get("/", (_, res) => {
-  res.send("This is my potfolio!");
-});
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
