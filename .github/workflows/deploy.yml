@@ -33,4 +33,6 @@ jobs:
           branch: master
 
       - name: Run Prisma Migrations
-        run: npx prisma migrate deploy --schema=./prisma/schema.prisma --preview-feature --url=$DATABASE_URL
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npx prisma migrate deploy --schema=./prisma/schema.prisma --preview-feature
