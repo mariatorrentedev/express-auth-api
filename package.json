@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
+    "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
+    "dev": "nodemon --exec node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
     "build": "npx tsc",
     "lint": "eslint src/**/*.ts"
   },
