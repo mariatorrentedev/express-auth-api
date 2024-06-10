@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import * as authService from "../services/auth";
 import { composeError } from "../utils";
 
-export async function signup(req: Request, res: Response) {
+export async function signUp(req: Request, res: Response) {
   const { email, password } = req.body;
   try {
     const user = await authService.signup(email, password);
