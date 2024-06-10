@@ -19,6 +19,7 @@ export const authenticateToken = async (
   if (!token) return res.sendStatus(401);
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const decoded: any = jwt.verify(token, SECRET_KEY);
     const user = await prisma.user.findUnique({
       where: { id: decoded.userId },
@@ -26,6 +27,13 @@ export const authenticateToken = async (
     if (!user) {
       return res.sendStatus(401);
     }
+
+    // Check if user has ADMIN role
+    if (user.role !== "ADMIN") {
+      // Forbidden if not ADMIN
+      return res.sendStatus(403);
+    }
+
     req.user = user;
     next();
   } catch (error) {

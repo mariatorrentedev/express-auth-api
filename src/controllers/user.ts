@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import * as userService from "../services/user";
 import { composeError } from "../utils";
+import bcrypt from "bcryptjs";
 
 export async function getUsers(req: Request, res: Response) {
   try {
@@ -30,6 +31,22 @@ export async function deleteUserById(req: Request, res: Response) {
   try {
     await userService.deleteUserById(userId);
     res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ error: composeError(error) });
+  }
+}
+
+export async function editUser(req: Request, res: Response) {
+  const userId = parseInt(req.params.id);
+  const { email, password, ...otherProps } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const updatedUser = await userService.editUser(userId, {
+      email,
+      password: hashedPassword,
+      ...otherProps,
+    });
+    res.json(updatedUser);
   } catch (error) {
     res.status(500).json({ error: composeError(error) });
   }
