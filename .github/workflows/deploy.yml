@@ -31,3 +31,6 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           branch: master
+
+      - name: Run Prisma Migrations
+        run: npx prisma migrate deploy --schema=./prisma/schema.prisma --preview-feature
