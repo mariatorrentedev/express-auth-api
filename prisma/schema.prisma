@@ -22,7 +22,24 @@ model User {
   id        Int       @id @default(autoincrement())
   email     String    @unique
   password  String
-  role      Role  @default(USER)
+  role      Role      @default(USER)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  authoredPosts BlogPost[] 
+}
+
+model BlogPost {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String    @db.Text //Ensure large string data type.
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Subscriber {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  createdAt DateTime  @default(now())
 }
