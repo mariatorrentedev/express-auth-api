@@ -13,3 +13,14 @@ export async function getUserById(id: number) {
 export async function deleteUserById(id: number) {
   return prisma.user.delete({ where: { id } });
 }
+
+export async function editUser(
+  userId: number,
+  data: { email: string; password: string }
+) {
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data,
+  });
+  return updatedUser;
+}
