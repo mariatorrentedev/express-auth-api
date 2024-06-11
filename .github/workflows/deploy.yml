@@ -20,7 +20,10 @@ jobs:
 
       - name: Install Railway CLI
         run: npm install -g @railway/cli
-        
+
+      - name: Authenticate with Railway CLI
+        run: railway login --github
+
       - name: Install dependencies
         run: npm install
 
