@@ -17,23 +17,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-        
-      - name: Authenticate with Railway CLI
-        run: railway login --github
-        
+          
       - name: Install dependencies
         run: npm install
 
       - name: Build the project
         run: npm run build
 
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up
+
       - name: Run Prisma Migrations
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npx prisma migrate deploy --schema=./prisma/schema.prisma --preview-feature
-
-      - name: Deploy to Railway
-        run: railway up
