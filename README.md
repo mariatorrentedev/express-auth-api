@@ -98,8 +98,10 @@ To build and run this app locally you will need a few things:
 - Clone the repository
 
 ```
-git clone this repository <project_dir>
+git clone https://github.com/marialastNamedev/verse-bytes.git <project_dir>
 ```
+
+_Note: wtfunk...my lastName word is confused in Railway as a missing dependency causing a deployment error, just copy the url above using the Code button._
 
 - Create an `.env` file based on the example
 
@@ -135,9 +137,9 @@ npm run build
 
 3. Create another service insde the same project for the DB.
 
-**_Note: This repo includes a github workflow that will do CI/CD for both, the DB and the server, in order for it to work we would need to add some secrets to our repo:_**
+**_Note: This repo includes a GitHub workflow that will do CI/CD for both, the DB and the server. In order for it to work we would need to add some secrets to our repo:_**
 
-4. Create a `RAILWAY_TOKEN` https://railway.app/project/<your_project_id>/settings/tokens.
+4. Create a `RAILWAY_TOKEN` [here](https://railway.app/project/) under your project _settings>tokens_.
 
 ### Github
 
