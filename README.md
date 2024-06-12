@@ -98,7 +98,7 @@ To build and run this app locally you will need a few things:
 - Clone the repository
 
 ```
-git clone https://github.com/mariatorrentedev/portfolio-api.git <project_dir>
+git clone https://github.com/mariatorrentedev/verse-bytes.git <project_dir>
 ```
 
 - Create an `.env` file based on the example
