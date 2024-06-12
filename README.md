@@ -63,7 +63,7 @@ Simple API for my blog using the following technologies:
 
   - id (auto-generated)
   - email (string)
-  - password ()
+  - password (string)
   - role (enum)
   - createdAt (Date)
   - updatedAt (Date)
