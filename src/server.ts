@@ -22,6 +22,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/blog", blogRoutes);
 
-app.listen(PORT, () => {
+/**
+ * Add Host to be runnable in Railway.
+ *
+ * See @https://docs.railway.app/guides/fixing-common-errors
+ */
+app.listen(PORT as number, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
