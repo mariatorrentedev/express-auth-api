@@ -1,4 +1,4 @@
-name: Deploy to Heroku
+name: Deploy to Railway
 
 on:
   push:
@@ -24,13 +24,14 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          branch: master
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+        run: railway up --service $RAILWAY_SERVICE_ID
 
       - name: Run Prisma Migrations
         env:
