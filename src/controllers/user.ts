@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import * as userService from "../services/user";
-import { composeError } from "../utils";
 import bcrypt from "bcryptjs";
 
 export async function getUsers(req: Request, res: Response) {
@@ -8,7 +7,7 @@ export async function getUsers(req: Request, res: Response) {
     const users = await userService.getUsers();
     res.json(users);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 }
 
@@ -22,7 +21,7 @@ export async function getUserById(req: Request, res: Response) {
       res.json(user);
     }
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 }
 
@@ -32,7 +31,7 @@ export async function deleteUserById(req: Request, res: Response) {
     await userService.deleteUserById(userId);
     res.sendStatus(204);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 }
 
@@ -48,6 +47,6 @@ export async function editUser(req: Request, res: Response) {
     });
     res.json(updatedUser);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 }

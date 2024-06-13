@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import { BlogService } from "../services/blog";
-import { composeError } from "../utils";
 
 export const createBlogPost = async (req: Request, res: Response) => {
   try {
@@ -12,7 +11,7 @@ export const createBlogPost = async (req: Request, res: Response) => {
     });
     res.status(201).json(newBlogPost);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 };
 
@@ -21,7 +20,7 @@ export const getBlogPosts = async (req: Request, res: Response) => {
     const blogPosts = await BlogService.getBlogPosts();
     res.json(blogPosts);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 };
 
@@ -35,7 +34,7 @@ export const getBlogPostById = async (req: Request, res: Response) => {
       res.json(blogPost);
     }
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 };
 
@@ -49,7 +48,7 @@ export const updateBlogPost = async (req: Request, res: Response) => {
     });
     res.json(updatedPost);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 };
 
@@ -59,6 +58,6 @@ export const deleteBlogPost = async (req: Request, res: Response) => {
     await BlogService.deleteBlogPost(postId);
     res.sendStatus(204);
   } catch (error) {
-    res.status(500).json({ error: composeError(error) });
+    res.status(500).json({ error });
   }
 };
