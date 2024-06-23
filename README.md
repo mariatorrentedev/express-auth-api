@@ -1,6 +1,6 @@
-# Verse Bytes API
+# Express Auth API
 
-Simple API for my blog using the following technologies:
+Simple Authentication service using the following technologies:
 
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/en/api.html)
@@ -28,12 +28,6 @@ Simple API for my blog using the following technologies:
     │       PUT
     │       DELETE
     │       └── /
-    ├── /blog
-    │   └── GET
-    │       POST
-    |       PUT
-    |       DELETE
-    │       └──/
 ```
 
 ### API Detail
@@ -42,16 +36,11 @@ Simple API for my blog using the following technologies:
 | :----------------- | :---------------------------------: | -------------------------------: |
 | POST               |             /auth/login             |    Validates username & password |
 | POST               |            /auth/signup             | Register a user, generate token. |
-| GET                |                /blog                |                   Get all blogs. |
-| GET                |              /blog/:id              |                  Get blog by id. |
 | **PRIVATE ROUTES** | Only accessible for **ADMIN** role: |
 | GET                |               /users                |                   Get all users. |
 | GET                |             /users/:id              |                  Get user by id. |
 | PUT                |             /users/:id              |               Update user by id. |
 | DELETE             |             /users/:id              |               Delete user by id. |
-| POST               |                /blog                |           Creates new blog post. |
-| PUT                |              /blog/:id              |                Update blog post. |
-| DELETE             |              /blog/:id              |                Delete blog post. |
 
 ---
 
@@ -68,22 +57,6 @@ Simple API for my blog using the following technologies:
   - createdAt (Date)
   - updatedAt (Date)
   - authoredPosts (Array of blog posts)
-
-- **Blog Posts(table)**
-
-  - id(auto-generated)
-  - title (string)
-  - content (string db.Text to ensure large string)
-  - author (relationship based on userId foreign key)
-  - authorId (integer)
-  - createdAt (Date)
-  - updatedAt (Date)
-
-- **Subscriber (table)**
-
-  - id(auto-generated)
-  - email (string)
-  - createdAt (Date)
 
 ## Run it locally
 
